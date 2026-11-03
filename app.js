@@ -88,7 +88,7 @@ document.querySelector("#print-invoice").addEventListener("click", () => {
   const filenameParts = [invoiceNumberInput.value, customerName]
     .filter(Boolean);
 
-  document.title = `${filenameParts.join("-").toUpperCase()} DIKIT DIKIT VISUAL`;
+  document.title = `${filenameParts.join("-").toUpperCase()}-DIKIT DIKIT VISUAL`;
   window.print();
 });
 window.addEventListener("afterprint", () => {
