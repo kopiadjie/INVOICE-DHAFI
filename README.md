@@ -3,7 +3,7 @@
 Invoice sederhana yang bisa diedit langsung di browser. Perhitungan item,
 subtotal, discount, dan amount due berjalan otomatis. Gunakan tombol
 **cetak / simpan PDF** untuk mencetak invoice atau menyimpannya sebagai PDF.
-Nama PDF mengikuti format `[nomor invoice] [nama customer] dikit dikit visual`;
+Nama PDF mengikuti format `[NOMOR-INVOICE]-[NAMA CUSTOMER] DIKIT DIKIT VISUAL`;
 browser akan menambahkan ekstensi `.pdf`.
 Untuk menghilangkan URL, tanggal/judul, dan nomor halaman pada PDF hasil cetak,
 aturan cetak memakai margin halaman 0. Jika browser masih menampilkan informasi

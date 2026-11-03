@@ -85,10 +85,10 @@ document.querySelector("#print-invoice").addEventListener("click", () => {
     .trim()
     .replace(/[<>:"/\\|?*\u0000-\u001f]/g, "")
     .replace(/[. ]+$/g, "");
-  const filenameParts = [invoiceNumberInput.value, customerName, "dikit dikit visual"]
+  const filenameParts = [invoiceNumberInput.value, customerName]
     .filter(Boolean);
 
-  document.title = filenameParts.join(" ");
+  document.title = `${filenameParts.join("-").toUpperCase()} DIKIT DIKIT VISUAL`;
   window.print();
 });
 window.addEventListener("afterprint", () => {
