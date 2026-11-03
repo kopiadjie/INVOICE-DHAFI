@@ -276,11 +276,19 @@ td:nth-child(5) {
 }
 
 .line-amount {
-  display: block;
-  overflow: hidden;
-  text-align: right;
-  text-overflow: ellipsis;
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
   white-space: nowrap;
+}
+
+.line-currency {
+  flex: 0 0 auto;
+}
+
+.line-value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 .remove-item {
@@ -348,13 +356,17 @@ td:nth-child(5) {
 
 .discount-input-wrap {
   display: flex;
+  width: fit-content;
+  max-width: 100%;
   align-items: center;
   justify-content: flex-end;
-  gap: 7px;
+  gap: 4px;
+  margin-left: auto;
 }
 
 .discount-input-wrap input {
-  width: 112px;
+  width: 1ch;
+  max-width: calc(100% - 2ch);
   padding: 2px 0;
   border: 0;
   border-bottom: 1px solid transparent;
@@ -363,6 +375,14 @@ td:nth-child(5) {
   color: inherit;
   background: transparent;
   text-align: right;
+  font-variant-numeric: tabular-nums;
+  appearance: textfield;
+}
+
+.discount-input-wrap input::-webkit-inner-spin-button,
+.discount-input-wrap input::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
 }
 
 .discount-input-wrap input:focus {
@@ -518,10 +538,6 @@ td:nth-child(5) {
     grid-template-columns: 78px 1fr 112px;
     gap: 8px;
     font-size: 10px;
-  }
-
-  .discount-input-wrap input {
-    width: 82px;
   }
 
   .amount-due {

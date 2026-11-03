@@ -18,9 +18,17 @@ const rupiah = new Intl.NumberFormat("id-ID", {
   currency: "IDR",
   maximumFractionDigits: 0,
 });
+const numberFormat = new Intl.NumberFormat("id-ID", {
+  maximumFractionDigits: 0,
+});
 
 function formatRupiah(amount) {
   return rupiah.format(amount).replace(/\u00a0/g, "\u00a0");
+}
+
+function updateDiscountWidth() {
+  const discount = Math.max(0, Number(discountInput.value) || 0);
+  discountInput.style.width = `${Math.max(1, numberFormat.format(discount).length)}ch`;
 }
 
 function updateTotals() {
@@ -32,7 +40,7 @@ function updateTotals() {
     const amount = price * quantity;
 
     subtotal += amount;
-    row.querySelector(".line-amount").textContent = formatRupiah(amount);
+    row.querySelector(".line-value").textContent = numberFormat.format(amount);
   }
 
   const discount = Math.max(0, Number(discountInput.value) || 0);
@@ -55,7 +63,12 @@ function addItem() {
     <td>
       <input class="number-input price-input" type="number" name="price" min="0" step="1" placeholder="0" inputmode="numeric" aria-label="Harga dalam rupiah" />
     </td>
-    <td><span class="line-amount">${formatRupiah(0)}</span></td>
+    <td>
+      <span class="line-amount">
+        <span class="line-currency">Rp</span>
+        <span class="line-value">0</span>
+      </span>
+    </td>
     <td>
       <button class="remove-item no-print" type="button" aria-label="Hapus item">&times;</button>
     </td>
@@ -72,7 +85,10 @@ function addItem() {
 }
 
 addItemButton.addEventListener("click", addItem);
-discountInput.addEventListener("input", updateTotals);
+discountInput.addEventListener("input", () => {
+  updateDiscountWidth();
+  updateTotals();
+});
 invoiceNumberInput.addEventListener("input", () => {
   invoiceNumberInput.value = invoiceNumberInput.value.replace(/\D/g, "").slice(0, 4);
 });
@@ -101,4 +117,5 @@ const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60_000
   .slice(0, 10);
 document.querySelector("#invoice-date").value = localToday;
 
+updateDiscountWidth();
 addItem();
