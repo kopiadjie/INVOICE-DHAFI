@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Invoice sederhana dari dikit dikit visual, Sumatera Utara."
+    />
+    <title>Invoice — dikit dikit visual</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="invoice">
+      <span class="crop crop-tl" aria-hidden="true"></span>
+      <span class="crop crop-tr" aria-hidden="true"></span>
+      <span class="crop crop-bl" aria-hidden="true"></span>
+      <span class="crop crop-br" aria-hidden="true"></span>
+
+      <header class="masthead">
+        <h1>[INVOICE]</h1>
+      </header>
+
+      <section class="company" aria-label="Informasi bisnis">
+        <div class="company-copy">
+          <h2 class="brand-name">dikit dikit visual</h2>
+          <p class="contact">0895 2774 9717<br />dikitdikitvisual@gmail.com</p>
+          <p class="location">sumatera utara, indonesia</p>
+        </div>
+        <img
+          id="brand-logo"
+          class="brand-mark"
+          src="logo/logo.png"
+          alt="Logo dikit dikit visual"
+        />
+      </section>
+      <div class="rule-dashed" aria-hidden="true"></div>
+
+      <section class="invoice-meta" aria-label="Informasi invoice">
+        <div class="meta-block customer-field">
+          <label class="meta-label" for="customer">bill to</label>
+          <input
+            id="customer"
+            name="customer"
+            type="text"
+            placeholder="Nama customer"
+            autocomplete="name"
+          />
+        </div>
+        <div class="meta-block">
+          <label class="meta-label" for="invoice-number">invoice no.</label>
+          <input
+            id="invoice-number"
+            name="invoice-number"
+            type="text"
+            inputmode="numeric"
+            pattern="[0-9]{4}"
+            maxlength="4"
+            required
+            placeholder="0001"
+            aria-describedby="invoice-hint"
+          />
+          <span id="invoice-hint" class="sr-only">Masukkan tepat 4 angka.</span>
+        </div>
+        <div class="meta-block">
+          <label class="meta-label" for="invoice-date">date</label>
+          <input id="invoice-date" name="invoice-date" type="date" />
+        </div>
+      </section>
+
+      <section class="items-section" aria-label="Daftar item invoice">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col" class="item-heading">item</th>
+                <th scope="col" class="qty-heading">qty</th>
+                <th scope="col" class="price-heading">price (Rp.)</th>
+                <th scope="col" class="amount-heading">amount</th>
+                <th scope="col" class="action-heading">
+                  <span class="sr-only">aksi</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="invoice-items"></tbody>
+          </table>
+        </div>
+        <button id="add-item" class="text-button no-print" type="button">
+          <span aria-hidden="true">+</span> tambah item
+        </button>
+      </section>
+
+      <section class="totals" aria-label="Ringkasan pembayaran">
+        <div class="total-row">
+          <span class="total-label">subtotal</span>
+          <span class="total-fill" aria-hidden="true"></span>
+          <span class="total-value" id="subtotal">Rp 0</span>
+        </div>
+        <div class="total-row discount-row">
+          <label class="total-label" for="discount">discount</label>
+          <span class="total-fill" aria-hidden="true"></span>
+          <span class="total-value discount-input-wrap">
+            <span>Rp</span>
+            <input
+              id="discount"
+              name="discount"
+              type="number"
+              min="0"
+              step="1"
+              value="0"
+              aria-label="Discount dalam rupiah"
+            />
+          </span>
+        </div>
+        <div class="total-row total-row-final">
+          <span class="total-label">total</span>
+          <span class="total-fill" aria-hidden="true"></span>
+          <span class="total-value" id="total">Rp 0</span>
+        </div>
+        <div class="amount-due">
+          <span>amount due</span>
+          <strong id="amount-due">Rp 0</strong>
+        </div>
+      </section>
+
+      <footer class="invoice-footer">
+        <button id="print-invoice" class="print-button no-print" type="button">
+          cetak / simpan PDF
+        </button>
+        <section class="payment-instructions" aria-label="Instruksi pembayaran">
+          <h2>[payment instruction]</h2>
+          <div class="bank-details">
+            <span>account name</span><span>:</span><span>DHAFI AZHAR HASAN SIREGAR</span>
+            <span>bank name</span><span>:</span><span>BANK RAKYAT INDONESIA [BRI]</span>
+            <span>account number</span><span>:</span><span>529001009314507</span>
+          </div>
+          <h2>[important]</h2>
+          <div class="important">
+            <p>- Biaya transfer antarbank menjadi tanggung jawab pengirim.</p>
+            <p>- Setelah pembayaran, kirim konfirmasi ke <strong>dikitdikitvisual@gmail.com / 0895 2774 9717</strong>.</p>
+          </div>
+        </section>
+      </footer>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
